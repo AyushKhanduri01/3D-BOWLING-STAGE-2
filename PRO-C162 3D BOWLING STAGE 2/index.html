@@ -1,0 +1,98 @@
+<!DOCTYPE html> 
+<html>
+  <!--Head-->
+  <head>
+    <!--Title-->
+    <title>Bowling Game</title>
+
+    <!--Importing needed framework-->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>   
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+
+    <!--Importing needed files-->
+    <script src='./Shoot.js'></script>
+    <script src='./move.js'></script>
+    <script src="./velocity.js"></script>
+  </head>
+
+  <!--Body-->
+  <body>
+    <!--Creating the whole scene-->
+    <a-scene id="scene" background="color:#026F90">
+      <!--Including sky-->
+      <a-sky src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg"></a-sky>
+
+
+      <!--Loading assets-->
+      <a-assets>
+        <a-asset-items 
+         id="target_pins" 
+         src="./Models/Target/pins.glb"
+        ></a-asset-items>
+
+        <a-asset-item
+          id="hand"
+          src="Models/Hand/player_hand.glb"
+        ></a-asset-item>
+
+        <img id="ballTexture" src="./Models/mYmmbrp.jpg">
+      </a-assets>
+
+
+      <!--Light-->
+      <a-light type="ambient" color="#445451"></a-light>
+      <a-light type="point" intensity="2" position="2 4 4"></a-light>
+
+
+      <!--Camera and Cursor-->
+      <a-entity
+        id="camera"
+        camera
+        position="0 1.6 0"
+        wasd-controls
+        look-controls="pointerLockEnabled: false"        
+      >
+      
+        <!--Attaching hand to Camera-->
+        <a-entity id="hand_pl" position="0 -0.5 -0.6" gltf-model="#hand" scale="0.01 0.01 0.01"></a-entity>
+
+        <a-cursor></a-cursor>        
+      </a-entity>
+
+
+      <!--Displaying Text-->
+      <a-entity
+        text="font: exo2bold; value: BOWLING GAME!; color: #BBB; align: center; width: 40"
+        position="0 15.5 -10"
+        scale="1.5 1.5 1.5"></a-entity>
+
+      <!--Ground-->
+      <a-plane
+        id="ground"
+        src="https://cdn.aframe.io/a-painter/images/floor.jpg"
+        rotation="-90 0 0" 
+        width="30" 
+        height="200"
+        static-body></a-plane>
+      </a-plane>
+
+      <!--Balls-->
+      <a-entity balls></a-entity>
+
+      <!--Pins-->
+      <!--gltf-model="#target_pins"-->
+      <a-box position="-2 0.1 -10" gltf-model="#target_pins" scale="0.05 0.05 0.05" color="tomato" depth="20" height="50" width="15" dynamic-body></a-box>
+
+      <a-box position="1 0.1 -8" gltf-model="#target_pins" scale="0.05 0.05 0.05" color="tomato" depth="20" height="50" width="15" dynamic-body></a-box>
+
+      <a-box position="-1 0.1 -8" gltf-model="#target_pins" scale="0.05 0.05 0.05" color="tomato" depth="20" height="50" width="15" dynamic-body></a-box>
+
+      <a-box position="0 0.1 -10" gltf-model="#target_pins" scale="0.05 0.05 0.05" color="tomato" depth="20" height="50" width="15" dynamic-body></a-box>
+
+      <a-box position="2 0.1 -10" gltf-model="#target_pins" scale="0.05 0.05 0.05" color="tomato" depth="20" height="50" width="15" dynamic-body></a-box>
+    </a-scene>
+
+    
+  </body>
+</html>
